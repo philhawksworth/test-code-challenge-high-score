@@ -26,9 +26,11 @@ module.exports = {
       return;
     }
 
-   // Normalize the URL to remove any protocol differences
+       // Normalize the URL to remove any protocol differences
     const url = new URL(process.env.URL);
     const siteURL = `https://${url.hostname}`;
+
+    console.log(`Registering ${siteURL} in the leaderboard`);
     
     await fetch("https://compose-challenge.netlify.app/submission", {
       method: "POST",
