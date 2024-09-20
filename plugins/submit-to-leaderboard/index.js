@@ -32,7 +32,7 @@ module.exports = {
 
     console.log(`Registering ${siteURL} in the leaderboard`);
     
-    await fetch("https://compose-challenge.netlify.app/submission", {
+    const response = await fetch("https://compose-challenge.netlify.app/submission", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,5 +42,8 @@ module.exports = {
         excluded: false,
       }),
     });
+
+    console.log(repsonse);
+    
   },
 };
