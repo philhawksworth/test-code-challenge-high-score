@@ -125,6 +125,27 @@
 
       <!-- looks like a good place for another edge include! -->
       <netlify-edge-include href="https://compose-challenge.netlify.app/partials/add-blob-storage"></netlify-edge-include>
+
+
+      <section>
+        <div class="panel">
+          <button id="ccc-vote">Pick me, pick me!</button> 
+          <b id="ccc-vote-count"></b>
+        </div>
+        <!-- Add some JavaScript to handle the clicks and post to the blob store API function -->
+        <script>
+          const button = document.getElementById("ccc-vote");
+          const count = document.getElementById("ccc-vote-count");
+          button.addEventListener("click", async (event) => {
+            const response = await fetch("/api/count", {
+              method: "POST",
+            });
+            count.textContent = await response.text();
+          });
+        </script>
+      </section>
+
+      
     </main>
 
     <!--
