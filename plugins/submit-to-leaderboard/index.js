@@ -26,20 +26,17 @@ module.exports = {
       return;
     }
 
-    // avoid duplicates due to different protocols
+   // Normalize the URL to remove any protocol differences
     const url = new URL(process.env.URL);
-    const protocol = url.protocol;
-    if (protocol !== 'https:') {
-        return;
-    }
-
+    const siteURL = `https://${url.hostname}`;
+    
     await fetch("https://compose-challenge.netlify.app/submission", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        url: process.env.URL,
+        url: siteURL,
         excluded: false,
       }),
     });
