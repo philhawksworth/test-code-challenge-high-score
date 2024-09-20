@@ -43,7 +43,7 @@ module.exports = {
       }),
     });
 
-    console.log(repsonse);
+    console.log(response);
     
   },
 };
