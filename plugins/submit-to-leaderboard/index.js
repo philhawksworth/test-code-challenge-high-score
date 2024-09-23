@@ -5,10 +5,24 @@ module.exports = {
   // Stash some env vars for later when they are not usually available to us
   onPreBuild: async () => {
     const filePath = path.join(__dirname, "../../netlify/data.json");
+  
+    
+    // normalize the repo URL to be a public https URL
+    let repoURL = process.env.REPOSITORY_URL;
+    if (repoURL.startsWith("git@github.com:")) {
+        repoURL = "https://github.com/" + repoURL.split(":")[1];
+    }
+    const content = { "default" : {
+            "repoURL": repoURL
+        }
+    };
+    
+    
     const content = { "default" : {
             "repoURL": process.env.REPOSITORY_URL,
         }
     };
+  
 
     fs.writeFile(filePath, JSON.stringify(content), (err) => {
       if (err) {
