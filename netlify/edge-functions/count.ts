@@ -9,13 +9,14 @@ export default async (req: Request, context: Context) => {
   let count: number = parseInt(await store.get("count")) || 0 ;
   count = count + 1;
   await store.set("count", count.toString());
-  
+
+  console.log("counter": count);
   
   const resp = await context.next();
   return new HTMLRewriter()
     .on('#ccc-vote-count', {
       element(element) {
-        element.setInnerContent(count)
+        element.setInnerContent(count.toString())
       },
     })
     .transform(resp);
