@@ -10,7 +10,7 @@ export default async (req: Request, context: Context) => {
   count = count + 1;
   await store.set("count", count.toString());
 
-  console.log("counter": count);
+  console.log("counter", count);
   
   const resp = await context.next();
   return new HTMLRewriter()
